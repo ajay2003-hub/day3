@@ -1,0 +1,36 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        //profit=sell-buy
+        int buy = prices[0];
+        int currProfit;
+        int maxProfit = 0;
+
+        boolean desendingelement = true;
+
+        for (int i = 0; i < prices.length-1; i++) {
+            if (prices[i] < prices[i + 1]) {
+                desendingelement = false;
+                break;
+            }
+        }
+
+        if (desendingelement) {
+            return 0;
+        } else {
+            for (int i = 1; i < prices.length; i++) {
+                int sell = prices[i];
+                currProfit = sell - buy;
+                maxProfit = Math.max(maxProfit, currProfit);
+                //check if current position is best for buy stock
+                if (buy > prices[i]) {
+                    buy = prices[i];
+                }
+            }
+
+            
+
+        }
+        return maxProfit;
+
+    }
+}
