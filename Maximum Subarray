@@ -1,0 +1,44 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int cs=0;
+        int ms=0;
+        boolean allNegative=true;
+        int curr_min=nums[0];
+        int min_num=Integer.MAX_VALUE;
+
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>=0){
+                allNegative=false;
+                break;
+            }
+        }
+
+        if(allNegative){
+            if(nums.length==1){
+                return nums[nums.length-1];
+            }
+            for(int i=0;i<nums.length-1;i++){
+                if(nums[i]<0){
+                    if(curr_min < nums[i+1]){
+                    curr_min=nums[i+1];
+                    }
+                }                
+                min_num=Math.min(min_num,curr_min);
+            }
+            return min_num;
+        }else{
+            for(int i=0;i<nums.length;i++){
+            cs+=nums[i];
+            if(cs<0){
+                cs=0;
+            }
+            ms=Math.max(ms,cs);
+        }
+        return ms;
+
+        }
+
+        
+        
+    }
+}
